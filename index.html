@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portofolio - List Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        html, body {
+            /* Mengunci geseran horizontal secara total */
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        body {
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #08080c;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 40px 15px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Dekorasi pendaran cahaya abstrak di background */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px; 
+            height: 300px;
+            background: linear-gradient(135deg, #0072ff, #00c6ff);
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            z-index: 1;
+            top: -50px;
+            left: -50px;
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            width: 250px; 
+            height: 250px;
+            background: linear-gradient(135deg, #c9924a, #85581a);
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.1;
+            z-index: 1;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px; 
+            z-index: 2;
+        }
+
+        /* Bagian Profil Atas */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Efek Organic Morphing Animation Foto Profil */
+        .profile-img-container {
+            width: 140px;  
+            height: 140px; 
+            margin: 0 auto 20px;
+            padding: 2px;  
+            background: linear-gradient(135deg, #0072ff, #c9924a);
+            box-shadow: 0 10px 30px rgba(0, 114, 255, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: bentukOrganik 8s ease-in-out infinite alternate;
+            transition: transform 0.3s ease;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: bentukOrganik 8s ease-in-out infinite alternate;
+        }
+        .profile-img-container:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 15px 35px rgba(201, 146, 74, 0.4);
+        }
+
+        @keyframes bentukOrganik {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 45% 55% 70% 30% / 50% 60% 40% 50%; }
+            100% { border-radius: 65% 35% 50% 50% / 40% 45% 55% 60%; }
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            background: linear-gradient(to right, #ffffff, #cdcdff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p.role {
+            color: #c9924a; 
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Teks Bio Anda */
+        header p.bio {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            max-width: 100%;
+            margin: 14px auto 25px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* Desain Tombol Ikon Sosmed */
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 15px;
+        }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #a1a1aa;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .social-btn.instagram:hover {
+            border-color: #e1306c;
+            color: #e1306c;
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.4);
+            transform: translateY(-3px);
+        }
+        .social-btn.github:hover {
+            border-color: #0072ff;
+            color: #0072ff;
+            box-shadow: 0 0 20px rgba(0, 114, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        .social-btn.whatsapp:hover {
+            border-color: #25d366;
+            color: #25d366;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+            transform: translateY(-3px);
+        }
+        .social-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Grid Project yang Aman untuk Mobile */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 20px;
+            width: 100%;
+            max-width: 400px; 
+            margin: 20px auto 0; 
+        }
+
+        /* Desain Card Project Glassmorphism */
+        .project-card {
+            background: rgba(18, 18, 22, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 114, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 114, 255, 0.15);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .project-desc {
+            font-size: 0.88rem;
+            color: #a1a1aa;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 25px;
+        }
+        .tag {
+            font-size: 0.72rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+            padding: 4px 10px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #08080c;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .project-link:hover {
+            background: #0072ff;
+            color: #ffffff;
+        }
+        .project-link:active {
+            transform: scale(0.96);
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #52525b;
+        }
+
+        /* Responsif Khusus HP Layar Sangat Kecil */
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.8rem; }
+            body { padding: 30px 12px; }
+            .project-card { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="profile-img-container">
+                <img src="000.webp" alt="Foto Profil" class="profile-img">
+            </div>
+            <h1>Cecep Saripudin</h1>
+            <p class="role">Creator & Web Developer</p>
+            
+            <p class="bio">
+                Suka ngopi, ngoding, dan bikin website yang ramah di layar HP Anda.
+            </p>
+
+            <div class="social-container">
+                <a href="https://www.instagram.com/syarifuddin.ska?igsh=bGd3Mjl3NHNoZzVv" target="_blank" class="social-btn instagram" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/" target="_blank" class="social-btn github" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://wa.me/6283878605801" target="_blank" class="social-btn whatsapp" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </header>
+
+        <main class="project-grid">
+            
+            <div class="project-card">
+                <div>
+                    <div class="project-icon">📻</div>
+                    <div class="project-title">Retro Keroncong Music</div>
+                    <div class="project-desc">Aplikasi web pemutar musik retro menggunakan YouTube IFrame API dengan optimasi mode hemat kuota dan baterai untuk Android.</div>
+                    <div class="tech-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">YouTube API</span>
+                    </div>
+                </div>
+                <a href="https://projectsorecc.github.io/Music-playlist/" class="project-link" target="_blank">Buka Project</a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-icon">📿</div>
+                    <div class="project-title">Tasbih Digital</div>
+                    <div class="project-desc">Aplikasi hitung dzikir digital yang responsif dengan fitur simpan otomatis riwayat hitungan, reset instan, dan getaran/suara klik di HP.</div>
+                    <div class="tech-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Local Storage</span>
+                    </div>
+                </div>
+                <a href="https://projectsorecc.github.io/Tasbih/" class="project-link" target="_blank">Buka Project</a>
+            </div>
+
+        </main>
+
+        <footer>
+            &copy; 2026 Cecep Saripudin. Dibuat dengan Kode HTML Murni.
+        </footer>
+    </div>
+
+</body>
+</html>
